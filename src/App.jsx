@@ -1,12 +1,27 @@
-import Meherab from './components/Meherab';
-import Rafsan from './components/Rafsan';
+import { Routes, Route } from "react-router-dom";
 
-function App({name,number}) {
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+
+import Home from "./Home";
+import About from "./About";
+import Projects from "./Projects";
+import Contact from "./Contact";
+
+function App() {
   return (
-    <>
-    <Rafsan name={name} number={number} />
-    <Meherab name={name} number={number} />
-    </>
+    <div className="min-h-screen bg-gray-950 text-white">
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+      <Footer />
+    </div>
   );
 }
 
