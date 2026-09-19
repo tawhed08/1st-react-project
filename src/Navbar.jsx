@@ -1,97 +1,76 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <nav className="border-b border-gray-800 bg-gray-950">
-      <div className="mx-auto flex max-w-6xl items-center px-6 py-5">
+  const links = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Contact", path: "/contact" },
+  ];
 
-        {/* Logo */}
+  return (
+    <nav className="sticky top-0 z-50 border-b border-gray-800/80 bg-gray-950/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+
         <Link
           to="/"
-          className="text-2xl font-bold text-blue-500"
+          onClick={() => setIsOpen(false)}
+          className="text-xl font-bold tracking-tight"
         >
-          Rafsan
+          Tawhed Islam
+          <span className="ml-1 text-blue-500">.</span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="ml-auto hidden gap-8 md:flex">
-          <Link
-            to="/"
-            className="text-gray-300 transition hover:text-blue-500"
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/about"
-            className="text-gray-300 transition hover:text-blue-500"
-          >
-            About
-          </Link>
-
-          <Link
-            to="/projects"
-            className="text-gray-300 transition hover:text-blue-500"
-          >
-            Projects
-          </Link>
-
-          <Link
-            to="/contact"
-            className="text-gray-300 transition hover:text-blue-500"
-          >
-            Contact
-          </Link>
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                `text-sm transition duration-300 ${
+                  isActive
+                    ? "font-semibold text-blue-400"
+                    : "text-gray-300 hover:text-blue-400"
+                }`
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
         </div>
 
-        {/* Mobile Button */}
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="ml-auto text-2xl md:hidden"
+          className="rounded-lg border border-gray-700 px-3 py-2 text-gray-300 md:hidden"
         >
-          ☰
+          {isOpen ? "✕" : "☰"}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="flex flex-col gap-4 border-t border-gray-800 px-6 py-5 md:hidden">
-
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-blue-500"
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/about"
-            onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-blue-500"
-          >
-            About
-          </Link>
-
-          <Link
-            to="/projects"
-            onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-blue-500"
-          >
-            Projects
-          </Link>
-
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-blue-500"
-          >
-            Contact
-          </Link>
-
+        <div className="border-t border-gray-800 bg-gray-950 px-6 py-5 md:hidden">
+          <div className="flex flex-col gap-5">
+            {links.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  `text-sm ${
+                    isActive
+                      ? "font-semibold text-blue-400"
+                      : "text-gray-300"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
         </div>
       )}
     </nav>
