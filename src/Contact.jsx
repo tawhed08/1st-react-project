@@ -8,7 +8,15 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert(`Thanks ${name}! Your message has been received.`);
+    const subject = encodeURIComponent(
+      `Portfolio Contact from ${name}`
+    );
+
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:tawhedislam789@gmail.com?subject=${subject}&body=${body}`;
 
     setName("");
     setEmail("");
@@ -29,19 +37,19 @@ function Contact() {
         <div className="text-center">
 
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-500">
-            Get in touch
+            Get in Touch
           </p>
 
           <h1 className="mt-3 text-4xl font-extrabold sm:text-5xl">
             Let's{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
               Connect
             </span>
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base sm:leading-8 dark:text-gray-400">
-            Have an idea, project or just want to say hello?
-            Feel free to send me a message.
+            Have a project idea, question or just want to say hello?
+            Feel free to get in touch with me.
           </p>
 
         </div>
@@ -52,7 +60,7 @@ function Contact() {
           {/* Contact Information */}
           <div className="lg:col-span-2">
 
-            <div className="h-full rounded-3xl border border-gray-200 bg-gray-50 p-6 shadow-sm sm:p-8 dark:border-gray-800 dark:bg-gray-900">
+            <div className="h-full rounded-3xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition duration-300 hover:shadow-xl sm:p-8 dark:border-gray-800 dark:bg-gray-900">
 
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10 text-2xl">
                 👋
@@ -63,75 +71,81 @@ function Contact() {
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-400">
-                I'm always interested in learning new things,
-                building projects and connecting with other
-                developers.
+                I'm always interested in learning, building
+                projects and connecting with other developers.
               </p>
 
-              {/* Contact Details */}
-              <div className="mt-8 space-y-5">
+              {/* Email */}
+              <div className="mt-8 flex items-start gap-4">
 
-                <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-lg">
+                  📧
+                </div>
 
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-500/10">
-                    📧
-                  </div>
+                <div className="min-w-0">
 
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
-                      Email
-                    </p>
+                  <p className="text-xs uppercase tracking-wider text-gray-500">
+                    Email
+                  </p>
 
-                    <p className="mt-1 break-all text-sm font-medium">
-                      your-email@example.com
-                    </p>
-                  </div>
+                  <a
+                    href="mailto:tawhedislam789@gmail.com"
+                    className="mt-1 block break-all text-sm font-medium transition hover:text-blue-500"
+                  >
+                    tawhedislam789@gmail.com
+                  </a>
 
                 </div>
 
-                <div className="flex items-start gap-4">
+              </div>
 
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/10">
-                    💻
-                  </div>
+              {/* GitHub */}
+              <div className="mt-6 flex items-start gap-4">
 
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
-                      GitHub
-                    </p>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/10 text-lg">
+                  💻
+                </div>
 
-                    <a
-                      href="https://github.com/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-1 inline-block text-sm font-medium text-blue-500 hover:underline"
-                    >
-                      github.com
-                    </a>
-                  </div>
+                <div>
+
+                  <p className="text-xs uppercase tracking-wider text-gray-500">
+                    GitHub
+                  </p>
+
+                  <a
+                    href="https://github.com/tawhed08"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 block text-sm font-medium text-blue-500 hover:underline"
+                  >
+                    github.com/tawhed08 ↗
+                  </a>
 
                 </div>
 
-                <div className="flex items-start gap-4">
+              </div>
 
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10">
-                    🔗
-                  </div>
+              {/* LinkedIn */}
+              <div className="mt-6 flex items-start gap-4">
 
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-500">
-                      LinkedIn
-                    </p>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-lg">
+                  🔗
+                </div>
 
-                    <a
-                      href="https://linkedin.com/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-1 inline-block text-sm font-medium text-blue-500 hover:underline"
-                    >
-                      LinkedIn Profile
-                    </a>
-                  </div>
+                <div>
+
+                  <p className="text-xs uppercase tracking-wider text-gray-500">
+                    LinkedIn
+                  </p>
+
+                  <a
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 block text-sm font-medium text-blue-500 hover:underline"
+                  >
+                    LinkedIn Profile ↗
+                  </a>
 
                 </div>
 
@@ -147,21 +161,29 @@ function Contact() {
                 <div className="mt-4 flex gap-3">
 
                   <a
-                    href="https://github.com/"
+                    href="https://github.com/tawhed08"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-sm font-bold transition hover:-translate-y-1 hover:border-blue-500 hover:text-blue-500 dark:border-gray-700 dark:bg-gray-950"
                     aria-label="GitHub"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-xs font-bold transition duration-300 hover:-translate-y-1 hover:border-blue-500 hover:text-blue-500 dark:border-gray-700 dark:bg-gray-950"
                   >
                     GH
                   </a>
 
                   <a
-                    href="https://linkedin.com/"
+                    href="mailto:tawhedislam789@gmail.com"
+                    aria-label="Email"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-xs font-bold transition duration-300 hover:-translate-y-1 hover:border-blue-500 hover:text-blue-500 dark:border-gray-700 dark:bg-gray-950"
+                  >
+                    @
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-sm font-bold transition hover:-translate-y-1 hover:border-blue-500 hover:text-blue-500 dark:border-gray-700 dark:bg-gray-950"
                     aria-label="LinkedIn"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-xs font-bold transition duration-300 hover:-translate-y-1 hover:border-blue-500 hover:text-blue-500 dark:border-gray-700 dark:bg-gray-950"
                   >
                     in
                   </a>
@@ -194,16 +216,20 @@ function Contact() {
 
               </div>
 
+              {/* Name + Email */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
 
-                {/* Name */}
                 <div>
 
-                  <label className="mb-2 block text-sm font-medium">
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium"
+                  >
                     Your Name
                   </label>
 
                   <input
+                    id="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -214,14 +240,17 @@ function Contact() {
 
                 </div>
 
-                {/* Email */}
                 <div>
 
-                  <label className="mb-2 block text-sm font-medium">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium"
+                  >
                     Email Address
                   </label>
 
                   <input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -237,11 +266,15 @@ function Contact() {
               {/* Message */}
               <div className="mt-5">
 
-                <label className="mb-2 block text-sm font-medium">
+                <label
+                  htmlFor="message"
+                  className="mb-2 block text-sm font-medium"
+                >
                   Message
                 </label>
 
                 <textarea
+                  id="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell me about your project..."
@@ -261,6 +294,10 @@ function Contact() {
                 <span>→</span>
               </button>
 
+              <p className="mt-4 text-center text-xs text-gray-500">
+                Clicking "Send Message" will open your email app.
+              </p>
+
             </form>
 
           </div>
@@ -278,6 +315,13 @@ function Contact() {
           <h2 className="mt-2 text-xl font-bold sm:text-2xl">
             Let's create something awesome 🚀
           </h2>
+
+          <a
+            href="mailto:tawhedislam789@gmail.com"
+            className="mt-6 inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:-translate-y-1 hover:bg-blue-500"
+          >
+            Email Me →
+          </a>
 
         </div>
 

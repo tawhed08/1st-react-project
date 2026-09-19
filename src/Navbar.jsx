@@ -28,7 +28,7 @@ function Navbar({ darkMode, setDarkMode }) {
           onClick={() => setIsOpen(false)}
           className="shrink-0 text-xl font-bold text-gray-900 dark:text-white sm:text-2xl"
         >
-          Tawhed<span className="text-blue-500">.</span>
+          Tawhed Islam<span className="text-blue-500">.</span>
         </Link>
 
         {/* Desktop navigation */}
