@@ -1,14 +1,12 @@
 import { useEffect, useRef } from "react";
 
-function Gravity({ children, strength = 25 }) {
+function Gravity({ children, strength = 20 }) {
   const elementRef = useRef(null);
 
   useEffect(() => {
     const element = elementRef.current;
 
     if (!element) return;
-
-    let animationFrame;
 
     const handleMouseMove = (event) => {
       const rect = element.getBoundingClientRect();
@@ -19,46 +17,29 @@ function Gravity({ children, strength = 25 }) {
       const distanceX = event.clientX - centerX;
       const distanceY = event.clientY - centerY;
 
-      const moveX =
-        (distanceX / window.innerWidth) * strength;
+      const moveX = (distanceX / window.innerWidth) * strength;
+      const moveY = (distanceY / window.innerHeight) * strength;
 
-      const moveY =
-        (distanceY / window.innerHeight) * strength;
-
-      cancelAnimationFrame(animationFrame);
-
-      animationFrame = requestAnimationFrame(() => {
-        element.style.transform = `
-          translate3d(${moveX}px, ${moveY}px, 0)
-          rotate(${moveX / 12}deg)
-        `;
-      });
+      element.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
     };
 
-    const resetPosition = () => {
-      cancelAnimationFrame(animationFrame);
-
-      animationFrame = requestAnimationFrame(() => {
-        element.style.transform =
-          "translate3d(0, 0, 0) rotate(0deg)";
-      });
+    const handleMouseLeave = () => {
+      element.style.transform = "translate3d(0, 0, 0)";
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", resetPosition);
+    element.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", resetPosition);
-
-      cancelAnimationFrame(animationFrame);
+      element.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [strength]);
 
   return (
     <div
       ref={elementRef}
-      className="will-change-transform"
+      className="transition-transform duration-300 ease-out"
     >
       {children}
     </div>
